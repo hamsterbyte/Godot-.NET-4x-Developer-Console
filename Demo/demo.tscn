@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://bekccoluusm7j"]
+
+[ext_resource type="Texture2D" uid="uid://cel15ami4cotu" path="res://Demo/cross.png" id="1_lyk7q"]
+[ext_resource type="Script" path="res://Demo/cross.cs" id="2_aq6ao"]
+[ext_resource type="Script" path="res://Demo/circle.cs" id="2_kaxv0"]
+[ext_resource type="Texture2D" uid="uid://djpybdrkyhqj3" path="res://Demo/circle.png" id="2_ysnkd"]
+[ext_resource type="Texture2D" uid="uid://wvc22rawst7s" path="res://Demo/square.png" id="3_olcfo"]
+[ext_resource type="Texture2D" uid="uid://bmli3hxrpvi36" path="res://Demo/triangle.png" id="4_nhqcf"]
+[ext_resource type="Script" path="res://Demo/square.cs" id="6_gq85s"]
+[ext_resource type="Script" path="res://Demo/triangle.cs" id="8_7wcjl"]
+
+[sub_resource type="Gradient" id="Gradient_nowu3"]
+interpolation_mode = 2
+colors = PackedColorArray(0.375093, 0.001066, 0.558538, 1, 0.105469, 0.117188, 0.136719, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5mbo"]
+gradient = SubResource("Gradient_nowu3")
+fill = 1
+fill_from = Vector2(0.06, 0.175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8v3wu"]
+size = Vector2(61.8742, 1.84454)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d0odm"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sswyv"]
+radius = 128.035
+
+[node name="demo" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(962.5, 540.5)
+scale = Vector2(31.0469, 17.8906)
+texture = SubResource("GradientTexture2D_f5mbo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="background"]
+collision_layer = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/StaticBody2D"]
+position = Vector2(-0.0322113, 31.0777)
+shape = SubResource("RectangleShape2D_8v3wu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="background/StaticBody2D"]
+position = Vector2(-0.0322113, -31.1616)
+shape = SubResource("RectangleShape2D_8v3wu")
+
+[node name="cross" type="Sprite2D" parent="."]
+self_modulate = Color(0.921875, 0.550781, 0.457031, 1)
+position = Vector2(443, 536)
+texture = ExtResource("1_lyk7q")
+script = ExtResource("2_aq6ao")
+
+[node name="circle" type="RigidBody2D" parent="."]
+position = Vector2(775, 538)
+collision_layer = 255
+physics_material_override = SubResource("PhysicsMaterial_d0odm")
+freeze = true
+freeze_mode = 1
+script = ExtResource("2_kaxv0")
+
+[node name="sprite" type="Sprite2D" parent="circle"]
+self_modulate = Color(0.738281, 0.292969, 0.390625, 1)
+texture = ExtResource("2_ysnkd")
+
+[node name="collision" type="CollisionShape2D" parent="circle"]
+shape = SubResource("CircleShape2D_sswyv")
+
+[node name="square" type="Sprite2D" parent="."]
+self_modulate = Color(0.3125, 0.660156, 0.808594, 1)
+position = Vector2(1108, 536)
+texture = ExtResource("3_olcfo")
+script = ExtResource("6_gq85s")
+
+[node name="triangle" type="Sprite2D" parent="."]
+self_modulate = Color(0.585938, 0.898438, 0.757813, 1)
+position = Vector2(1451, 536)
+texture = ExtResource("4_nhqcf")
+script = ExtResource("8_7wcjl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(960, 540)

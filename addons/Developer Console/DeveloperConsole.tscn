@@ -1,0 +1,518 @@
+[gd_scene load_steps=36 format=3 uid="uid://de0qg8ke135ln"]
+
+[ext_resource type="Script" path="res://addons/Developer Console/UI/DeveloperConsoleUI.cs" id="1_8rpjy"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/DCCrosshairUI.cs" id="2_gxyvi"]
+[ext_resource type="Texture2D" uid="uid://dxglbj3p103dn" path="res://addons/Developer Console/Icons/GuiVisibilityVisible.svg" id="3_y56vd"]
+[ext_resource type="Texture2D" uid="uid://bm7v31morg1hu" path="res://addons/Developer Console/Icons/GuiVisibilityHidden.svg" id="4_e4mbv"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Crosshair/UICrosshairViewer.cs" id="5_lgojw"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Crosshair/UIContextTree.cs" id="5_ly5ja"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Terminal/UITerminalOutput.cs" id="5_pj6ps"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Crosshair/UICommandTree.cs" id="6_8kmlh"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Command Prompt/UIContextLabel.cs" id="6_56g1j"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Crosshair/UIMousePositionLabel.cs" id="6_qjser"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Command Prompt/UIAutocompleteController.cs" id="7_t12mj"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Crosshair/UICrosshairOutputLabel.cs" id="8_c1pwn"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Command Prompt/UICommandInput.cs" id="8_xv854"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Command Prompt/UIModeToggle.cs" id="9_u5wy4"]
+[ext_resource type="Script" path="res://addons/Developer Console/UI/Command Prompt/UIDescriptionLabel.cs" id="10_a6cop"]
+[ext_resource type="Script" path="res://addons/Developer Console/ConsoleCamera.cs" id="16_4fo3w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8uk8v"]
+bg_color = Color(0.113281, 0.132813, 0.160156, 1)
+draw_center = false
+border_width_right = 10
+border_color = Color(0.113281, 0.132813, 0.160156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bgup"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.113281, 0.132813, 0.160156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2nwv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.113281, 0.132813, 0.160156, 1)
+border_color = Color(0.171875, 0.171875, 0.171875, 1)
+expand_margin_right = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vms"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.210938, 0.238281, 0.289063, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex8m8"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.128906, 0.148438, 0.179688, 1)
+border_color = Color(0.172549, 0.172549, 0.172549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbr1y"]
+bg_color = Color(0.128906, 0.148438, 0.179688, 1)
+draw_center = false
+border_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48syn"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.128906, 0.148438, 0.179688, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqj3"]
+bg_color = Color(0.128906, 0.148438, 0.179688, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25xm1"]
+draw_center = false
+border_color = Color(0.113281, 0.132813, 0.160156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fymlk"]
+bg_color = Color(0.113725, 0.133333, 0.160784, 1)
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.113281, 0.132813, 0.160156, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 8.0
+expand_margin_top = 6.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_178bo"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_top = 1
+border_color = Color(0.171875, 0.171875, 0.171875, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_apkny"]
+number_color = Color(1, 1, 1, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(0, 0.603922, 0.898039, 1)
+member_variable_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctx6f"]
+bg_color = Color(0.0546875, 0.0546875, 0.0546875, 1)
+border_width_top = 1
+border_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jej"]
+content_margin_left = 10.0
+bg_color = Color(0.0546875, 0.0546875, 0.0546875, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkxti"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+bg_color = Color(0.054902, 0.054902, 0.054902, 1)
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7thol"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie522"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwkeu"]
+content_margin_left = 1.0
+content_margin_right = 4.0
+bg_color = Color(0.054902, 0.054902, 0.054902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color(0.171875, 0.171875, 0.171875, 1)
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e55sf"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.054902, 0.054902, 0.054902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.171875, 0.171875, 0.171875, 1)
+
+[node name="Developer Console" type="CanvasLayer" node_paths=PackedStringArray("_output")]
+layer = 128
+visible = false
+script = ExtResource("1_8rpjy")
+_output = NodePath("Master VBox/Terminal Mode")
+
+[node name="Master VBox" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = -1
+
+[node name="Crosshair Mode" type="PanelContainer" parent="Master VBox"]
+visible = false
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+size_flags_vertical = 3
+focus_next = NodePath("../Command Prompt/Command Margins/Command HBox/Autocomplete Controller/Command Input")
+focus_previous = NodePath("../Command Prompt/Command Margins/Command HBox/Autocomplete Controller/Command Input")
+mouse_filter = 2
+mouse_default_cursor_shape = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8uk8v")
+script = ExtResource("2_gxyvi")
+
+[node name="Crosshair VBox" type="VBoxContainer" parent="Master VBox/Crosshair Mode"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Crosshair Upper Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bgup")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair Upper Panel"]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair Upper Panel/HBoxContainer"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+theme_override_font_sizes/font_size = 16
+text = "Crosshair Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Version" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair Upper Panel/HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+theme_override_font_sizes/font_size = 16
+text = "Version 1.0b"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Crosshair HSplit" type="HSplitContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+theme_override_constants/minimum_grab_thickness = 0
+split_offset = -640
+
+[node name="Tree Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_o2nwv")
+
+[node name="Tree VBox" type="VBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel"]
+layout_mode = 2
+
+[node name="Tree VSplit" type="VSplitContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 128
+
+[node name="Context Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7vms")
+
+[node name="Context VBox" type="VBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Context Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Context Panel/Context VBox"]
+layout_mode = 2
+
+[node name="Context Label" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Context Panel/Context VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Context"
+
+[node name="Context Tree" type="Tree" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Context Panel/Context VBox" node_paths=PackedStringArray("_consoleCamera", "_filter")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+theme_override_constants/draw_relationship_lines = 1
+theme_override_constants/draw_guides = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ex8m8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dbr1y")
+theme_override_styles/selected = SubResource("StyleBoxFlat_dbr1y")
+columns = 2
+allow_reselect = true
+hide_root = true
+script = ExtResource("5_ly5ja")
+_visButtonTex = ExtResource("3_y56vd")
+_invisButtonTex = ExtResource("4_e4mbv")
+_consoleCamera = NodePath("../../../../../../../../../../Console Camera")
+_filter = NodePath("../Context Filter")
+metadata/_edit_use_anchors_ = true
+
+[node name="Context Filter" type="LineEdit" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Context Panel/Context VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_48syn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nuqj3")
+placeholder_text = "Filter..."
+
+[node name="Command Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7vms")
+
+[node name="Command VBox" type="VBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Command Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Command Label" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Command Panel/Command VBox"]
+layout_mode = 2
+text = "Commands"
+
+[node name="Command Tree" type="Tree" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Tree Panel/Tree VBox/Tree VSplit/Command Panel/Command VBox" node_paths=PackedStringArray("_autocompleteController")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+theme_override_constants/draw_relationship_lines = 1
+theme_override_constants/draw_guides = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ex8m8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dbr1y")
+theme_override_styles/selected = SubResource("StyleBoxFlat_dbr1y")
+allow_reselect = true
+hide_root = true
+script = ExtResource("6_8kmlh")
+_autocompleteController = NodePath("../../../../../../../../../Command Prompt/Command Margins/Command HBox/Autocomplete Controller")
+metadata/_edit_use_anchors_ = true
+
+[node name="Crosshair Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_25xm1")
+
+[node name="Crosshair VBox" type="VBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel"]
+layout_mode = 2
+
+[node name="Crosshair Viewer" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox" node_paths=PackedStringArray("_consoleCamera")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fymlk")
+script = ExtResource("5_lgojw")
+_consoleCamera = NodePath("../../../../../../../Console Camera")
+
+[node name="Crosshair Lower Panel" type="PanelContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bgup")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox/Crosshair Lower Panel"]
+layout_mode = 2
+
+[node name="Output Label" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox/Crosshair Lower Panel/HBoxContainer"]
+layout_mode = 2
+text = "Output: "
+
+[node name="Crosshair Output Label" type="RichTextLabel" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox/Crosshair Lower Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+script = ExtResource("8_c1pwn")
+
+[node name="Mouse Position Label" type="Label" parent="Master VBox/Crosshair Mode/Crosshair VBox/Crosshair HSplit/Crosshair Panel/Crosshair VBox/Crosshair Lower Panel/HBoxContainer"]
+layout_mode = 2
+text = "(0,0)"
+script = ExtResource("6_qjser")
+
+[node name="Terminal Mode" type="CodeEdit" parent="Master VBox" node_paths=PackedStringArray("_commandInput")]
+layout_mode = 2
+size_flags_vertical = 3
+focus_next = NodePath("../Command Prompt/Command Margins/Command HBox/Autocomplete Controller/Command Input")
+focus_previous = NodePath("../Command Prompt/Command Margins/Command HBox/Autocomplete Controller/Command Input")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/line_number_color = Color(0.305882, 0.305882, 0.305882, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_178bo")
+theme_override_styles/focus = SubResource("StyleBoxFlat_178bo")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_178bo")
+editable = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+syntax_highlighter = SubResource("CodeHighlighter_apkny")
+scroll_smooth = true
+minimap_width = 128
+line_folding = true
+gutters_draw_line_numbers = true
+gutters_zero_pad_line_numbers = true
+gutters_draw_fold_gutter = true
+indent_size = 10
+script = ExtResource("5_pj6ps")
+_commandInput = NodePath("../Command Prompt/Command Margins/Command HBox/Autocomplete Controller/Command Input")
+
+[node name="Command Prompt" type="Panel" parent="Master VBox"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 43.455)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ctx6f")
+
+[node name="Command Margins" type="MarginContainer" parent="Master VBox/Command Prompt"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Command HBox" type="HBoxContainer" parent="Master VBox/Command Prompt/Command Margins"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="Context Label" type="Label" parent="Master VBox/Command Prompt/Command Margins/Command HBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.811765, 0.513726, 0.0313726, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_21jej")
+text = "/root::"
+vertical_alignment = 2
+script = ExtResource("6_56g1j")
+
+[node name="Autocomplete Controller" type="Control" parent="Master VBox/Command Prompt/Command Margins/Command HBox" node_paths=PackedStringArray("_contextLabel", "_autoCompleteLabel", "_autoCompleteSuggestions", "_autoCompleteDescription", "_commandInput")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("7_t12mj")
+_contextLabel = NodePath("../Context Label")
+_autoCompleteLabel = NodePath("Autocomplete Label")
+_autoCompleteSuggestions = NodePath("../../../../../Suggestions Label")
+_autoCompleteDescription = NodePath("../../../../../Description Label")
+_commandInput = NodePath("Command Input")
+
+[node name="Autocomplete Label" type="Label" parent="Master VBox/Command Prompt/Command Margins/Command HBox/Autocomplete Controller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.345098, 0.345098, 0.345098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dkxti")
+vertical_alignment = 1
+
+[node name="Command Input" type="LineEdit" parent="Master VBox/Command Prompt/Command Margins/Command HBox/Autocomplete Controller" node_paths=PackedStringArray("_terminalMode", "_contextLabel", "_autocompleteController")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../../../../../Terminal Mode")
+focus_previous = NodePath(".")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7thol")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ie522")
+placeholder_text = "Enter Console Command..."
+clear_button_enabled = true
+draw_control_chars = true
+caret_blink = true
+script = ExtResource("8_xv854")
+_terminalMode = NodePath("../../../../../Terminal Mode")
+_contextLabel = NodePath("../../Context Label")
+_autocompleteController = NodePath("..")
+
+[node name="Mode Toggle" type="TextureButton" parent="Master VBox/Command Prompt/Command Margins/Command HBox" node_paths=PackedStringArray("_crosshairMode", "_terminalMode")]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("4_e4mbv")
+texture_pressed = ExtResource("3_y56vd")
+stretch_mode = 3
+script = ExtResource("9_u5wy4")
+_crosshairMode = NodePath("../../../../Crosshair Mode")
+_terminalMode = NodePath("../../../../Terminal Mode")
+
+[node name="Suggestions Label" type="RichTextLabel" parent="."]
+visible = false
+clip_contents = false
+offset_left = 67.0
+offset_top = 1016.0
+offset_right = 131.0
+offset_bottom = 1040.0
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_jwkeu")
+bbcode_enabled = true
+fit_content = true
+scroll_following = true
+autowrap_mode = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
+
+[node name="Description Label" type="RichTextLabel" parent="."]
+visible = false
+custom_minimum_size = Vector2(256, 96)
+offset_left = 1541.0
+offset_top = 715.0
+offset_right = 1797.0
+offset_bottom = 811.0
+pivot_offset = Vector2(-16, 74)
+theme_override_styles/normal = SubResource("StyleBoxFlat_e55sf")
+text = "3"
+fit_content = true
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("10_a6cop")
+
+[node name="Console Camera" type="Camera2D" parent="."]
+top_level = true
+z_as_relative = false
+enabled = false
+editor_draw_screen = false
+script = ExtResource("16_4fo3w")

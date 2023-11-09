@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2manssatvgy8"]
+
+[ext_resource type="Script" path="res://NonStaticCommandTest.cs" id="1_d7hdx"]
+[ext_resource type="Texture2D" uid="uid://dxglbj3p103dn" path="res://addons/Developer Console/Icons/GuiVisibilityVisible.svg" id="2_wkw0k"]
+
+[sub_resource type="Gradient" id="Gradient_8kp07"]
+interpolation_mode = 2
+colors = PackedColorArray(0.287266, 0.000494688, 0.411033, 1, 0.239739, 0.000534444, 0.593024, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cqg1l"]
+gradient = SubResource("Gradient_8kp07")
+use_hdr = true
+fill = 1
+fill_from = Vector2(-0.17, 0.345)
+
+[sub_resource type="Gradient" id="Gradient_djjo2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ytocx"]
+gradient = SubResource("Gradient_djjo2")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d7hdx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_cqg1l")
+
+[node name="Control5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_ytocx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(293, 177)
+texture = ExtResource("2_wkw0k")
+
+[node name="TextureRect2" type="TextureRect" parent="Sprite2D"]
+offset_left = -293.0
+offset_top = -177.0
+offset_right = -253.0
+offset_bottom = -137.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(960, 540)
