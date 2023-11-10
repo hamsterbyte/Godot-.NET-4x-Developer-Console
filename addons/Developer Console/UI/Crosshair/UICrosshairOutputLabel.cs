@@ -29,6 +29,10 @@ public partial class UICrosshairOutputLabel : RichTextLabel, ICanInitialize{
     }
 
     private void UpdateOutputLabel(string message){
+        CallThreadSafe("UpdateOutputLabelThreadSafe", message);
+    }
+
+    private void UpdateOutputLabelThreadSafe(string message){
         if (message.Trim().StartsWith("#!")){
             message = message.Replace("#!", $"[color={DCColorTheme.Regions[0].Color.ToHtml()}]");
             message = message.Replace("!#", $"[/color]");
