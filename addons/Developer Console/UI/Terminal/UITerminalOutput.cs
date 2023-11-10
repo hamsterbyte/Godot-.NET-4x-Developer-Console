@@ -38,6 +38,10 @@ public partial class UITerminalOutput : CodeEdit, ICanInitialize{
     #region CALLBACKS
 
     private void PrintToOutput(string message){
+        CallThreadSafe("PrintThreadSafe", message);
+    }
+
+    private void PrintThreadSafe(string message){
         SetLine(GetLineCount() - 1, $"{message}\n");
         CallDeferred("ScrollToEnd");
     }
